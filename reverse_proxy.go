@@ -28,7 +28,6 @@ func proxy(
 		r.Trailer = req.Trailer
 	}
 
-	// p.ModifyResponse = resmod
 	p.Transport = resmod
 
 	return p

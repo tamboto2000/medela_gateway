@@ -21,8 +21,6 @@ func InitRouter(conf *Config) *echo.Echo {
 			newHandlerFunc(e).handlerFunc(),
 			mddls...,
 		)
-
-		// r.Add(e.Method, e.Endpoint, newHandlerFunc(e).handlerFunc())
 	}
 
 	return r
