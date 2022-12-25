@@ -41,7 +41,7 @@ func middlewareFunc(m Middleware) echo.MiddlewareFunc {
 			address.RawQuery = ctx.Request().URL.RawQuery
 
 			resw := newResponseWriter()
-			proxy(address, ctx.Request(), resmod).ServeHTTP(resw, ctx.Request())
+			proxy(address, ctx.Request(), "", resmod).ServeHTTP(resw, ctx.Request())
 
 			if resmod.statusCode > 399 {
 				ctx.JSON(resmod.statusCode, resmod.body)

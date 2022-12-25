@@ -9,12 +9,18 @@ import (
 func proxy(
 	address *url.URL,
 	req *http.Request,
+	method string,
 	resmod http.RoundTripper,
 ) *httputil.ReverseProxy {
 	p := httputil.NewSingleHostReverseProxy(address)
 	p.Director = func(r *http.Request) {
+		if method != "" {
+			r.Method = method
+		} else {
+			r.Method = req.Method
+		}
+
 		r.URL = address
-		r.Method = req.Method
 		r.Header = req.Header
 		r.Body = req.Body
 		r.GetBody = req.GetBody

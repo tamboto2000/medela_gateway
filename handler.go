@@ -45,5 +45,6 @@ func (ctrl *handlerFunc) reqBackend(ctx echo.Context) {
 	resmod.mergeBody = true
 	resmod.mergeHeader = true
 
-	proxy(address, ctx.Request(), resmod).ServeHTTP(ctx.Response().Writer, ctx.Request())
+	proxy(address, ctx.Request(), ctrl.endp.Backend.Method, resmod).
+		ServeHTTP(ctx.Response().Writer, ctx.Request())
 }
