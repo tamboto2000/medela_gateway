@@ -37,7 +37,7 @@ The `:id` is path parameter, `endpoint` and `backend.url_pattern` must has the s
 
 ## Add an endpoint
 To add an endpoint, append a new object inside `endpoints` on the config file, example:
-```
+```json
 {
     "endpoints": [
         {
