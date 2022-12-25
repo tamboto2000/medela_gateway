@@ -2,3 +2,4 @@ scratch/
 tests/
 config_example.json
 *.exe
+medela-gateway
