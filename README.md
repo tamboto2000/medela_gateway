@@ -3,25 +3,25 @@ API Gateway for PT. Medela Potentia interview task.
 This custom gateway is inspired by [KrakenD](https://www.krakend.io/)
 
 ## Installation
-Clone this repository, enter to project root directory and run this command to build the project:
-`make build`
+Clone this repository, enter to project root directory and run this command to build the project:<br>
+`make build`<br>
 
-This command will build the project binary as `medela-gateway`
+This command will build the project binary as `medela-gateway`<br><br>
 
-To run the build with default port (`:8080`) and config, execute this command:
-`make run`
+To run the build with default port (`:8080`) and config, execute this command:<br>
+`make run`<br>
 
 This command will run the app and will also trying to find default config `config.json`.
-You can provide the config file by creating one.
+You can provide the config file by creating one.<br><br>
 
-To run the app with custom config file, run the binary as follows:
-`./medela-gateway -c {config_file}.json`
+To run the app with custom config file, run the binary as follows:<br>
+`./medela-gateway -c {config_file}.json`<br>
 
-with `{config_file}` as the file name, example:
-`./medela-gateway -c my_config.json`
+with `{config_file}` as the file name, example:<br>
+`./medela-gateway -c my_config.json`<br><br>
 
-To run with custom port, run the binary as follows:
-`./medela-gateway -p {port}`
+To run with custom port, run the binary as follows:<br>
+`./medela-gateway -p {port}`<br>
 
 with `{port}` as the port number, example:
 `./medela-gateway -p 9000 -c config.json`
