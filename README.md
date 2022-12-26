@@ -124,8 +124,8 @@ The attributes for a middleware are:
 | `merge_response_header` | N          | `boolean` | If true, the response headers from middleware will be merged into endpoint backend response headers. All canonical headers will NOT be merged, only custom headers will |
 
 ## Technical references
-- Reverse proxy
+- Reverse proxy<br>
 https://itnext.io/why-should-you-write-your-own-api-gateway-from-scratch-378074bfc49e
-- Response modifier
-https://stackoverflow.com/questions/31535569/how-to-read-response-body-of-reverseproxy
-https://forum.golangbridge.org/t/how-to-build-an-http-reverse-proxy-to-dynamically-change-the-content-of-the-upstream-response/1313
+- Response modifier<br>
+https://stackoverflow.com/questions/31535569/how-to-read-response-body-of-reverseproxy<br>
+https://forum.golangbridge.org/t/how-to-build-an-http-reverse-proxy-to-dynamically-change-the-content-of-the-upstream-response/1313<br>
