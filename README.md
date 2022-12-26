@@ -1,15 +1,30 @@
 # Medela Gateway
-API Gateway for PT. Medela Potentia interview task
+API Gateway for PT. Medela Potentia interview task.
+This custom gateway is inspired by [KrakenD](https://www.krakend.io/)
 
 ## Installation
 Clone this repository, enter to project root directory and run this command to build the project:
 `make build`
 
-To run the build, execute this command:
+This command will build the project binary as `medela-gateway`
+
+To run the build with default port (`:8080`) and config, execute this command:
 `make run`
 
 This command will run the app and will also trying to find default config `config.json`.
 You can provide the config file by creating one.
+
+To run the app with custom config file, run the binary as follows:
+`./medela-gateway -c {config_file}.json`
+
+with `{config_file}` as the file name, example:
+`./medela-gateway -c my_config.json`
+
+To run with custom port, run the binary as follows:
+`./medela-gateway -p {port}`
+
+with `{port}` as the port number, example:
+`./medela-gateway -p 9000 -c config.json`
 
 ## Configuration file overview
 A configuration file is needed to run the app so that it can function properly.
@@ -76,6 +91,37 @@ Attributes of backend are:
 | `host`         | Y          | `string` | The server/backend host, can be a domain or IP. You need to specify the scheme as the preffix, example: `https://foo.com`, `foo.com` is not a valid value |
 | `url_pattern`  | Y          | `string` | The URL that will handle the request to an endpoint                                                                                                       |
 | `method`       | Y          | `string` | The supported method by this backend                                                                                                                      |
+
+## Middleware configuration
+A middleware act as filter for incoming requests to an endpoint, this can be used to verify the validity of a request, for example user authorization.
+To add a middleware, append the middleware object to `endpoints.middlewares` array, example:
+```json
+{
+    "endpoint": "/api/v1/product",
+    "method": "GET",
+    "backend": {
+        "host": "http://myproducts.com",
+        "url_pattern": "/product",
+        "method": "GET"
+    },
+    "middlewares": [
+        {
+            "host": "http://myproducts.com",
+            "url_pattern": "/auth",
+            "merge_response_body": true,
+            "merge_response_header": true
+        }
+    ]
+}
+```
+
+The attributes for a middleware are:
+| Attribute name          | Mandatory? | Type      | Description                                                                                                                                                             |
+|-------------------------|------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `host`                  | Y          | `string`  | The middleware server host, can be a domain or IP. You need to specify the scheme as the preffix, example: `https://foo.com`, `foo.com` is not a valid value            |
+| `url_pattern`           | Y          | `string`  | The URL that will filter the incoming requests to an endpoint                                                                                                           |
+| `merge_response_body`   | N          | `boolean` | If true, the response body from middleware will be merged into endpoint backend response body. This is only supported for JSON type response                            |
+| `merge_response_header` | N          | `boolean` | If true, the response headers from middleware will be merged into endpoint backend response headers. All canonical headers will NOT be merged, only custom headers will |
 
 ## Technical references
 - Reverse proxy
