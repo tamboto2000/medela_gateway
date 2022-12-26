@@ -9,6 +9,7 @@ import (
 
 func main() {
 	confFile := flag.String("c", "", "path to config file")
+	port := flag.String("p", "8080", "port to listen")
 	flag.Parse()
 
 	conf, err := medelagateway.ParseConfigFromFile(*confFile)
@@ -19,5 +20,5 @@ func main() {
 	}
 
 	r := medelagateway.InitRouter(conf)
-	r.Logger.Fatal(r.Start(":8080"))
+	r.Logger.Fatal(r.Start(fmt.Sprintf(":%s", *port)))
 }
